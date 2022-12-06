@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a9d24c6c4d1b8c0459dc3f45c054af25
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Paid Stamp Demo
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c3606f31f716689408405b6b93bbf9ba, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

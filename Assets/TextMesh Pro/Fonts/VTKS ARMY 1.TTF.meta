@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a4e78740f9fe05044965cb7fa506cdb5
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - vtks army
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c1f45a11a9f35e741b1050e50bcb60c4, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
