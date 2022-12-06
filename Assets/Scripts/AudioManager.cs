@@ -42,10 +42,10 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        Play("warambience");
-        Play("nightambience");
-        Play("ambience");
-        Play("getready"); 
-        Play("theme");
+        //Play("warambience");
+        //Play("nightambience");
+        //Play("ambience");
+        //Play("getready"); 
+        //Play("theme");
     }
 }

@@ -20,7 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float attackRange;
     [SerializeField] private float attackDelay;
     [Header("Health")]
-    [SerializeField] private float health = 25f;
+    [SerializeField] private float health = 5f;
     private bool canAttack = true;
 
     private void Awake()
@@ -54,7 +54,7 @@ public class EnemyBehaviour : MonoBehaviour
         scoreManager.Score.text = "" + Mathf.RoundToInt(scoreManager.scorePoints).ToString();
         if (health <= 0)
         {
-            audioManager.Play("zombiedie");
+            audioManager.Play("ghostdie");
             scoreManager.scorePoints += 10;
             scoreManager.Score.text = "" + Mathf.RoundToInt(scoreManager.scorePoints).ToString();
             Destroy(gameObject);
@@ -68,7 +68,7 @@ public class EnemyBehaviour : MonoBehaviour
         canAttack = true;
         if (playerHealth.currentHealth > 0)
         {
-            audioManager.Play("zombieattack");
+            audioManager.Play("ghostattack");
         }
         
     }

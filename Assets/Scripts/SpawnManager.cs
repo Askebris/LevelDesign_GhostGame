@@ -8,7 +8,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
 
-    private float waveAmount = 0;
+    public float waveAmount = 0;
     private float waveIncrease = 1;
     private float waveStartAmount = 2;
     private AudioManager audioManager;
@@ -45,7 +45,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (readyToSpawn)
         {
-            audioManager.Play("spawnzombie");
+            audioManager.Play("spawnghost");
             SpawnWave();
             readyToSpawn = false;
             
