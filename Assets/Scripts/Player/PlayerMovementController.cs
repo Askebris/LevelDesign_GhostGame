@@ -35,6 +35,8 @@ public class PlayerMovementController : MonoBehaviour
     Animator animator;
     Vector2 input;
     //@INIT
+
+
     void Start()
     {
         animator = GetComponent<Animator>();

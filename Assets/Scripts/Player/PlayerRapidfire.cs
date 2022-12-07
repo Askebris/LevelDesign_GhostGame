@@ -38,7 +38,7 @@ public class PlayerRapidfire : MonoBehaviour
 
     public void Rapidfire()
     {
-        gunController.fireRate = 0.01f;
+        gunController.flashLightRate = 0.01f;
         ClockEnable.enabled = true;
         ClockTimeEnable.enabled = true;
         SecondsEnable.enabled = true;
@@ -54,7 +54,7 @@ public class PlayerRapidfire : MonoBehaviour
     IEnumerator RemoveRapidFire(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        gunController.fireRate = 0.2f;
+        gunController.flashLightRate = 0.2f;
         infiniteloop.enabled = false;
         Ammo.enabled = true;
         ClockEnable.enabled = false;

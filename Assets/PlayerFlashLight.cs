@@ -7,15 +7,13 @@ using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 public class PlayerFlashLight : MonoBehaviour
 {
-    private bool LightOn;
-
     private PlayerAmmo playerAmmo;
     private AudioManager audioManager;
+    private FlashLightOnOff flashLightOnOff;
     public static GunController instance;
     [SerializeField] Transform spawnPoint;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float shootSpeed;
-    private GameObject m_spotlight;
     float fireTime;
     public float fireRate = 0.2f;
     public Light spotlight;
@@ -25,7 +23,7 @@ public class PlayerFlashLight : MonoBehaviour
     public float timeToKillEnemy;
     private float enemyDeadTimer;
 
-    float damage = 5f;
+    //float damage = 5f;
 
     public LayerMask viewMask;
     Transform enemy;
@@ -34,10 +32,10 @@ public class PlayerFlashLight : MonoBehaviour
     {
         audioManager = FindObjectOfType<AudioManager>();
         playerAmmo = FindObjectOfType<PlayerAmmo>();
+        flashLightOnOff = FindObjectOfType<FlashLightOnOff>();
     }
     private void Start()
     {
-        LightOn = false;
         enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
         viewAngle = spotlight.spotAngle;
         spotlight.color = originalSpotlightColor;
@@ -62,7 +60,6 @@ public class PlayerFlashLight : MonoBehaviour
     }
     bool CanSeeEnemy()
     {
-        
         if (Vector3.Distance(transform.position, enemy.position) < viewDistance)
         {
             //GetComponentInParent<EnemyBehaviour>().TakeDamage(damage);
@@ -106,15 +103,15 @@ public class PlayerFlashLight : MonoBehaviour
 
     public void OnShoot()
     {
-        LightOn = true;
-        m_spotlight.SetActive(true);
         enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
         if (playerAmmo.currentAmmo > 0)
         {
+            flashLightOnOff.TurnOnFlashlight();
             audioManager.Play("shoot");
         }
         else
         {
+            flashLightOnOff.TurnOffFlashlight();
             audioManager.Play("noammo");
         }
         PlayerFire();

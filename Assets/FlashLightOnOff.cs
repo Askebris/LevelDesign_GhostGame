@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class FlashLightOnOff : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool turnLightOn;                  //check if the player is in trigger
+    public GameObject flashLightObj;
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        
+        turnLightOn = false;                   //player not in zone       
+    }
+    public void Update()
+    {
+        if (turnLightOn)           //if in zone and press F key
+        {
+            flashLightObj.SetActive(true);
+        }
+
+    }
+    public void TurnOnFlashlight()
+    {
+        turnLightOn = true;
+    }
+    public void TurnOffFlashlight()
+    {
+        turnLightOn = false;
     }
 }
