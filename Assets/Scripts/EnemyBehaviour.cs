@@ -12,6 +12,7 @@ public class EnemyBehaviour : MonoBehaviour
     private ScoreManager scoreManager;
     private AudioManager audioManager;
     private PlayerHealth playerHealth;
+    private enemyChangeColor enemyColor;
     [Header("Follow Player")]
     private GameObject myTarget;
     [SerializeField] private NavMeshAgent myAgent;
@@ -20,15 +21,18 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float attackRange;
     [SerializeField] private float attackDelay;
     [Header("Health")]
-    [SerializeField] private float health = 5f;
+    [SerializeField] public float health = 100f;
     private bool canAttack = true;
-
+    public bool enemyTakeDamage = false;
+    public Transform enemy;
     private void Awake()
     {
+        enemyTakeDamage = false;
         myTarget = GameObject.FindWithTag("Player");
         playerHealth = FindObjectOfType<PlayerHealth>();
         audioManager = FindObjectOfType<AudioManager>();
         scoreManager = FindObjectOfType<ScoreManager>();
+        enemyColor = FindObjectOfType<enemyChangeColor>(); 
     }
 
     void Update()
@@ -49,16 +53,21 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("Taking DAMAGE!");
         health -= damage;
         scoreManager.scorePoints += 2;
         scoreManager.Score.text = "" + Mathf.RoundToInt(scoreManager.scorePoints).ToString();
+        enemyColor.altColor.g += 0.1f;
+
         if (health <= 0)
         {
             audioManager.Play("ghostdie");
             scoreManager.scorePoints += 10;
             scoreManager.Score.text = "" + Mathf.RoundToInt(scoreManager.scorePoints).ToString();
             Destroy(gameObject);
+            enemyTakeDamage = false;
         }
+        
     }
 
     private IEnumerator AttackTimer()

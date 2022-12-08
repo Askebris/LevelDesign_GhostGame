@@ -1238,4 +1238,5 @@ public partial class @InputActionsMap : IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
     }
+
 }

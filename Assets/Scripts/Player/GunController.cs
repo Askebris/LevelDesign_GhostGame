@@ -7,31 +7,32 @@ using UnityEngine.InputSystem;
 
 public class GunController : MonoBehaviour
 {
+    Transform enemy;
     private @InputActionsMap inputActionsMap;
     private PlayerAmmo playerAmmo;
     private AudioManager audioManager;
+    private EnemyBehaviour enemyScript;
     public static GunController instance;
     [SerializeField] Transform spawnPoint;
     [SerializeField] float shootSpeed;
-    float flashLightTime;
-    float damage = 25f;
+    //float flashLightTime;
+    float damage = 1f;
     public float flashLightRate = 0.2f;
-    private float batteryDrainTime = 0.5f;
+    //private float batteryDrainTime = 0.5f;
     public Light spotlight;
     public float viewDistance;
     private float viewAngle;
     public LayerMask viewMask;
-    Transform enemy;
     Color originalSpotlightColor = Color.yellow;
     public float timeToKillEnemy;
     private float enemyDeadTimer;
 
     private void Awake()
     {
- 
         inputActionsMap = new @InputActionsMap();
         audioManager = FindObjectOfType<AudioManager>();
         playerAmmo = FindObjectOfType<PlayerAmmo>();
+        enemyScript = FindObjectOfType<EnemyBehaviour>();
 
         if (instance == null)
         {
@@ -55,45 +56,62 @@ public class GunController : MonoBehaviour
     private void Start()
     {
         playerAmmo.currentAmmo = playerAmmo.maxAmmo;
-        enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
+        enemyScript.enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
         viewAngle = spotlight.spotAngle;
         spotlight.color = originalSpotlightColor;
         Reload();
     }
     void Update()
     {
-        if(inputActionsMap.Player.Shoot.triggered)
+        /*
+        Vector2 aim = Gamepad.rightStick.ReadValue();
+        Vector3 direction = new Vector3(aim.x, 0, aim.y); //if you're 2d side scroller, you need to swap 2nd and 3rd value.
+        transform.rotation = Quaternion.LookRotation(direction);
+        */
+        
+        if (inputActionsMap.Player.Shoot.triggered)
         {
             inputActionsMap.Player.Shoot.started += DrainBattery;
+            inputActionsMap.Player.Shoot.started += TurnOn;
             inputActionsMap.Player.Shoot.canceled += TurnOff;
         }
 
-        if (CanSeeEnemy())
+        if (CanSeeEnemy() && spotlight.enabled == true)
         {
-            //Debug.Log("Player: I see you Ghost!");
-            enemyDeadTimer += Time.deltaTime;
-            gameObject.GetComponentInParent<EnemyBehaviour>().TakeDamage(damage);
+            enemyScript.enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
+            Debug.Log("DIE Ghost!");
+            enemyScript.enemyTakeDamage = true;
+            //enemyDeadTimer += Time.deltaTime;
+            enemyScript.TakeDamage(damage);
         }
         else
         {
+            enemyScript.enemyTakeDamage = false;
             //Debug.Log("Player: Where r u?");
-            enemyDeadTimer -= Time.deltaTime;
         }
-        enemyDeadTimer = Mathf.Clamp(enemyDeadTimer, 0, timeToKillEnemy);
-        // Fade between idle color to spotted color of spotlight depending on playerVisibleTimer/timeToSpotPlayer;
-        spotlight.color = Color.Lerp(originalSpotlightColor, Color.red, enemyDeadTimer / timeToKillEnemy);
+        /*
+        enemyDeadTimer = Mathf.Clamp(enemyDeadTimer, 0, enemyScript.health);
+        // Fade between original enemy color to dead enemy color depending on enemyDeadTimer/enemyScript.health;
+        enemyColor.altColor = Color.Lerp(enemyColor.originalEnemyColor, enemyColor.deadEnemyColor, enemyDeadTimer / enemyScript.health);
+        enemyColor.rend.material.color = enemyColor.altColor;
+        */
     }
 
     private void TurnOff(InputAction.CallbackContext context)
     {
-        Debug.Log("Flashlight off!");
+        //Debug.Log("Flashlight off!");
         spotlight.enabled = false;
+    }
+    private void TurnOn(InputAction.CallbackContext context)
+    {
+        //Debug.Log("Flashlight On!");
+        spotlight.enabled = true;
     }
 
     private void DrainBattery(InputAction.CallbackContext context)
     {
         //StartCoroutine(BatteryTimer());
-        Debug.Log("Draining battery");
+        //Debug.Log("Draining battery");
     }
 
     /*
@@ -116,40 +134,38 @@ public class GunController : MonoBehaviour
 
     public void OnShoot()
     {
-        enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
-        if (playerAmmo.currentAmmo > 0)
+        //enemyScript.enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
+        if (spotlight.enabled == false) //&& playerAmmo.currentAmmo > 0
         {
-            Debug.Log("Flashlight On!");
-            spotlight.enabled = true;
+            //Debug.Log("Flashlight On!");
             audioManager.Play("shoot");
         }
         else
         {
-            Debug.Log("Get Battery!");
-            spotlight.enabled = false;
+            //Debug.Log("Get Battery!");
             audioManager.Play("noammo");
         }
         //PlayerFire();
     }
     bool CanSeeEnemy()
     {
-        if (Vector3.Distance(transform.position, enemy.position) < viewDistance)
+        if (Vector3.Distance(transform.position, enemyScript.enemy.position) < viewDistance)
         {
-            //GetComponentInParent<EnemyBehaviour>().TakeDamage(damage);
-            Vector3 dirToEnemy = (enemy.position - transform.position).normalized;
+            Vector3 dirToEnemy = (enemyScript.enemy.position - transform.position).normalized;
             float angleBetweenPlayerAndEnemy = Vector3.Angle(transform.forward, dirToEnemy);
             if (angleBetweenPlayerAndEnemy < viewAngle / 2f)
             {
-                if (!Physics.Linecast(transform.position, enemy.position, viewMask))
+                if (!Physics.Linecast(transform.position, enemyScript.enemy.position, viewMask))
                 {
-                    Debug.Log("true");
+                    //Debug.Log("true");
                     return true;
                 }
             }
-            Debug.Log("false");
+            //Debug.Log("false");
         }
         return false;
     }
+  
     /*
     private IEnumerator BatteryTimer()
     {
