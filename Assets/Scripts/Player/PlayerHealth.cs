@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     AudioManager audioManager;
-    ScoreManager scoreManager;
     [SerializeField] public HealthBar healthBar;
     public CanvasGroup LoseTheGameCanvasGroup;
     public int maxHealth = 100;
@@ -24,19 +23,12 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         audioManager = FindObjectOfType<AudioManager>();
-        scoreManager = FindObjectOfType<ScoreManager>();
     }
     private void Update()
     {
         if (currentHealth <= 0)
         {
-            m_score = Convert.ToInt32(scoreManager.Score.text);
-            m_highscore = Convert.ToInt32(scoreManager.HighScore.text);
             StartCoroutine(Died(LoseTheGameCanvasGroup));
-            if (m_highscore < m_score)
-            {
-                scoreManager.HighScore.text = scoreManager.Score.text;
-            }
         }
     }
 

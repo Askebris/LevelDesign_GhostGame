@@ -7,9 +7,7 @@ using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 public class PlayerFlashLight : MonoBehaviour
 {
-    private PlayerAmmo playerAmmo;
     private AudioManager audioManager;
-    private FlashLightOnOff flashLightOnOff;
     public static GunController instance;
     [SerializeField] Transform spawnPoint;
     [SerializeField] GameObject projectilePrefab;
@@ -31,15 +29,12 @@ public class PlayerFlashLight : MonoBehaviour
     private void Awake()
     {
         audioManager = FindObjectOfType<AudioManager>();
-        playerAmmo = FindObjectOfType<PlayerAmmo>();
-        flashLightOnOff = FindObjectOfType<FlashLightOnOff>();
     }
     private void Start()
     {
         enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
         viewAngle = spotlight.spotAngle;
         spotlight.color = originalSpotlightColor;
-        Reload();
     }
 
     void Update()
@@ -87,33 +82,14 @@ public class PlayerFlashLight : MonoBehaviour
     {
         if (Time.time - fireRate < fireTime) return;
 
-        if (playerAmmo.currentAmmo <= 0) return;
-
-        playerAmmo.currentAmmo--;
-        playerAmmo.Ammo.text = Mathf.RoundToInt(playerAmmo.currentAmmo).ToString();
         fireTime = Time.time;
         var newProjectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
         newProjectile.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * shootSpeed, ForceMode.Impulse);
     }
-    public void Reload()
-    {
-        playerAmmo.currentAmmo = playerAmmo.maxAmmo; //picked up ammo?
-    }
-
-
     public void OnShoot()
     {
         enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
-        if (playerAmmo.currentAmmo > 0)
-        {
-            flashLightOnOff.TurnOnFlashlight();
-            audioManager.Play("shoot");
-        }
-        else
-        {
-            flashLightOnOff.TurnOffFlashlight();
-            audioManager.Play("noammo");
-        }
+
         PlayerFire();
     }
 }

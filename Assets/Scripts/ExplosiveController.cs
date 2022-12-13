@@ -30,7 +30,6 @@ public class ExplosiveController : MonoBehaviour
     public void Start()
     {
         currentGrenades = maxGrenades;
-        UpdateGrenades();
     }
     
     
@@ -43,12 +42,10 @@ public class ExplosiveController : MonoBehaviour
         currentGrenades--;
         fireTime = Time.time;
         var newExplosive = Instantiate(explosivePrefab, spawnPoint.position, spawnPoint.rotation); //spawn on player position
-        UpdateGrenades();
     }
     public void GrenadePickup()
     {
         currentGrenades = maxGrenades; //called/added automatically maybe on pickup
-        UpdateGrenades();
     }
     
     
@@ -62,8 +59,4 @@ public class ExplosiveController : MonoBehaviour
         
     }
 
-    private void UpdateGrenades()
-    {
-        Grenade.text = Mathf.RoundToInt(currentGrenades).ToString();
-    }
 }

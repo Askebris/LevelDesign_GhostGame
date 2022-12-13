@@ -9,7 +9,6 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    private ScoreManager scoreManager;
     private AudioManager audioManager;
     private PlayerHealth playerHealth;
     private enemyChangeColor enemyColor;
@@ -31,7 +30,6 @@ public class EnemyBehaviour : MonoBehaviour
         myTarget = GameObject.FindWithTag("Player");
         playerHealth = FindObjectOfType<PlayerHealth>();
         audioManager = FindObjectOfType<AudioManager>();
-        scoreManager = FindObjectOfType<ScoreManager>();
         enemyColor = FindObjectOfType<enemyChangeColor>(); 
     }
 
@@ -55,15 +53,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Debug.Log("Taking DAMAGE!");
         health -= damage;
-        scoreManager.scorePoints += 2;
-        scoreManager.Score.text = "" + Mathf.RoundToInt(scoreManager.scorePoints).ToString();
         enemyColor.altColor.g += 0.1f;
 
         if (health <= 0)
         {
             audioManager.Play("ghostdie");
-            scoreManager.scorePoints += 10;
-            scoreManager.Score.text = "" + Mathf.RoundToInt(scoreManager.scorePoints).ToString();
             Destroy(gameObject);
             enemyTakeDamage = false;
         }
