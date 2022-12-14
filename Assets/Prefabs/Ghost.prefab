@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3675038584514076992}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.045, y: 1.642, z: 0.426}
+  m_LocalPosition: {x: 0.045, y: 1.642, z: 0.67501533}
   m_LocalScale: {x: 0.15, y: 0.24588552, z: 0.047751516}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 44c05f7efc6032c49b108382174de06d, type: 2}
+  - {fileID: 2100000, guid: 1295af724950b4045ae822565e3bd9d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3718426239116165786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102156054dffa614e9913ae6efca69c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 245deee3892ad2641bcb56bd21d45b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1613440859599369230}
@@ -176,19 +176,18 @@ MonoBehaviour:
   point2: {fileID: 0}
   point3: {fileID: 0}
   point4: {fileID: 0}
-  seenPlayer: {fileID: 0}
-  radius: 13.42
-  angle: 42
-  playerRef:
-  - {fileID: 0}
+  seenPlayer: {fileID: 2737791784416854579, guid: 86f1967622fbece4eabcd0652b325176, type: 3}
+  radius: 27.12
+  angle: 66
+  playerRef: []
   targetMask:
     serializedVersion: 2
     m_Bits: 0
   obstructionsMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 0
   canSeePlayer: 0
-  target: {fileID: 0}
+  target: {fileID: 2737791784416854542, guid: 86f1967622fbece4eabcd0652b325176, type: 3}
   MoveSpeed: 20
 --- !u!54 &4908449478780102851
 Rigidbody:
@@ -232,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4355889028919225950}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.192, y: 1.64, z: 0.378}
+  m_LocalPosition: {x: -0.192, y: 1.64, z: 0.62701535}
   m_LocalScale: {x: 0.30502, y: 0.5, z: 0.127585}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -267,7 +266,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: 59b619b1a404da941993159ef5a74153, type: 3}
+  - {fileID: 2100000, guid: 16a6dbbec8b0233469709389a9bbde7b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -315,7 +314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6815043817816315382}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.048032254, y: 1.642, z: 0.37798452}
+  m_LocalPosition: {x: 0.048032254, y: 1.642, z: 0.627}
   m_LocalScale: {x: 0.30502, y: 0.5, z: 0.127585}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -350,7 +349,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: 59b619b1a404da941993159ef5a74153, type: 3}
+  - {fileID: 2100000, guid: 16a6dbbec8b0233469709389a9bbde7b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -398,7 +397,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6819457406357202335}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.192, y: 1.6404514, z: 0.42911673}
+  m_LocalPosition: {x: -0.192, y: 1.6404514, z: 0.67813206}
   m_LocalScale: {x: 0.15, y: 0.24588552, z: 0.047751516}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -433,7 +432,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 44c05f7efc6032c49b108382174de06d, type: 2}
+  - {fileID: 2100000, guid: 1295af724950b4045ae822565e3bd9d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1056,6 +1055,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -4440,6 +4440,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 1
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0

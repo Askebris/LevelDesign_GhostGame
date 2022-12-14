@@ -711,6 +711,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 11
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -4095,6 +4096,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -5032,7 +5034,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 210531818539275156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 830b986de3be04d4289056f12ed78704, type: 3}
+  m_Script: {fileID: 11500000, guid: 30269b28ac9246a4d9e9bcdd2decf5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LightObj: {fileID: 210531817513335538}
