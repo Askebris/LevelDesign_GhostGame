@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &2206213051699999901
 Transform:
@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2206213051699999900}
-  m_LocalRotation: {x: 0.47814262, y: 0.50908107, z: 0.52167493, w: 0.4899709}
-  m_LocalPosition: {x: -0.00037750244, y: 0, z: 0}
+  m_LocalRotation: {x: 0.6350714, y: 0.6523679, z: 0.31216925, w: 0.27138707}
+  m_LocalPosition: {x: -0.0567, y: -0.00038, z: 0.01028}
   m_LocalScale: {x: 0.0010031465, y: 0.002000709, z: 0.0049185036}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1586981339882918962}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -1.4, y: 93.59, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.589, y: 131.231, z: 90.088}
 --- !u!108 &2206213051699999906
 Light:
   m_ObjectHideFlags: 0
@@ -44,9 +44,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.495283, g: 1, b: 0.98517513, a: 1}
-  m_Intensity: 35.3
+  m_Intensity: 10
   m_Range: 43.12
-  m_SpotAngle: 21.1
+  m_SpotAngle: 42
   m_InnerSpotAngle: 4.2
   m_CookieSize: 10
   m_Shadows:
@@ -178,9 +178,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: bc12023233509df48a8dbae0b025c0d7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e2cf99945ce4148a6a6c50e4ce7b992c, type: 2}
     - target: {fileID: 919132149155446097, guid: bc12023233509df48a8dbae0b025c0d7, type: 3}
       propertyPath: m_Name
       value: Destructed_wall1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bc12023233509df48a8dbae0b025c0d7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc12023233509df48a8dbae0b025c0d7, type: 3}
@@ -240,6 +248,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0c120829f80391f41ac95a6778e5afe8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e2cf99945ce4148a6a6c50e4ce7b992c, type: 2}
     - target: {fileID: 919132149155446097, guid: 0c120829f80391f41ac95a6778e5afe8, type: 3}
       propertyPath: m_Name
       value: Destructed_wall2
