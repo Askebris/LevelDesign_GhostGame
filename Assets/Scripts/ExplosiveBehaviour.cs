@@ -7,7 +7,7 @@ public class ExplosiveBehaviour : MonoBehaviour
 {
     float timerDetonate = 3f;
     float explosionRange = 5f;
-    float explosionDamage = 10f;
+    float explosionDamage = 1000f;
     float explosionForce = 10f * 1000;
     [SerializeField] TextMeshPro timerText;
     [SerializeField] ParticleSystem explosionEffect;
@@ -38,10 +38,16 @@ public class ExplosiveBehaviour : MonoBehaviour
         {
 
             var damagableCol = collider.GetComponent<EnemyBehaviour>();
+            var damagableCol2 = collider.GetComponent<DestroyWall>();
 
             if (damagableCol != null)
             {
                 damagableCol.TakeDamage(explosionDamage);
+            }
+
+            if (damagableCol2 != null)
+            {
+                damagableCol2.TakeDamage(explosionDamage);
             }
 
             var rigidbodyCol = collider.GetComponent<Rigidbody>();

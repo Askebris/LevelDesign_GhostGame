@@ -5,35 +5,40 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    private bool enemyInDaCone = false;
+    private EnemyInCone enemyInCone;
     [SerializeField] GameObject Test;
     private GunController gunController;
     private AudioManager audioManager;
     private PlayerHealth playerHealth;
-    private enemyChangeColor enemyColor;
+    //private enemyChangeColor enemyColor;
     [Header("Follow Player")]
     private GameObject myTarget;
     [SerializeField] private NavMeshAgent myAgent;
     [SerializeField] private int range;
-    [SerializeField] public int damage;
+    [SerializeField] private int damage;
     [SerializeField] private float attackRange;
     [SerializeField] private float attackDelay;
     [Header("Health")]
-    [SerializeField] public float health;
+    [SerializeField] private float health;
     private bool canAttack = true;
     private void Awake()
     {
+        bool enemyInDaCone = false;
+        enemyInCone = FindObjectOfType<EnemyInCone>();
         myTarget = GameObject.FindWithTag("Player");
         playerHealth = FindObjectOfType<PlayerHealth>();
         audioManager = FindObjectOfType<AudioManager>();
         gunController = FindObjectOfType<GunController>();
-        enemyColor = FindObjectOfType<enemyChangeColor>(); 
+        //enemyColor = FindObjectOfType<enemyChangeColor>(); 
     }
 
-    void Update()
+    private void Update()
     {
         float dist = Vector3.Distance(this.transform.position, myTarget.transform.position);
 
@@ -47,8 +52,9 @@ public class EnemyBehaviour : MonoBehaviour
             playerHealth.PlayerTakeDamage(damage);
             StartCoroutine(AttackTimer());
         }
-        if (gunController.enemyTakeDamage == true)
+        if (enemyInDaCone == true && gunController.spotlight.enabled == true)
         {
+            Debug.Log("Soon Taking Damage");
             TakeDamage(10);
         }
 
@@ -58,13 +64,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
             Debug.Log("Taking DAMAGE!");
             this.health -= damage;
-            enemyColor.altColor.g += 0.1f;
+            //enemyColor.altColor.g += 0.1f;
 
             if (this.health <= 0)
             {
                 Debug.Log("HAs DIED!");
                 audioManager.Play("ghostdie");
-                Destroy(Test);
+                Destroy(this.gameObject);
                 //this.gameObject.SetActive(false);
                 //enemyTakeDamage = false;
             }
@@ -82,5 +88,22 @@ public class EnemyBehaviour : MonoBehaviour
             audioManager.Play("ghostattack");
         }
         
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Cone")     //if Enemy in zone
+        {
+            Debug.Log("Enemy in da CONE");
+            enemyInDaCone = true;
+        }
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Cone")     //if Enemy exit zone
+        {
+            enemyInDaCone = false;
+        }
     }
 }

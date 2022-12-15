@@ -28,17 +28,17 @@ public class enemyChangeColor : MonoBehaviour
         rend.material.color = altColor;
     }
     void Update()
-    {
+    {/*
         if (gunController.enemyTakeDamage == true)
         {
             //Debug.Log("CHANGING COLOR");
-            enemyDeadTimer = 20f;
-            enemyDeadTimer = Mathf.Clamp(enemyDeadTimer, 0, enemyScript.health);
+            //enemyDeadTimer = 20f;
+            //enemyDeadTimer = Mathf.Clamp(enemyDeadTimer, 0, enemyScript.health);
 
             // Fade between original enemy color to dead enemy color depending on enemyDeadTimer/enemyScript.health;
-            altColor = UnityEngine.Color.Lerp(originalEnemyColor, deadEnemyColor, enemyDeadTimer / enemyScript.health);
-            rend.material.color = altColor;
-        }
+            //altColor = UnityEngine.Color.Lerp(originalEnemyColor, deadEnemyColor, enemyDeadTimer / enemyScript.health);
+            //rend.material.color = altColor;
+        }*/
     }
     /*
     void Update()
