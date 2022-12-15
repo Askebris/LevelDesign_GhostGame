@@ -9,6 +9,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    private GunController gunController;
     private AudioManager audioManager;
     private PlayerHealth playerHealth;
     private enemyChangeColor enemyColor;
@@ -20,16 +21,14 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float attackRange;
     [SerializeField] private float attackDelay;
     [Header("Health")]
-    [SerializeField] public float health = 100f;
+    [SerializeField] public float health;
     private bool canAttack = true;
-    public bool enemyTakeDamage = false;
-    public Transform enemy;
     private void Awake()
     {
-        enemyTakeDamage = false;
         myTarget = GameObject.FindWithTag("Player");
         playerHealth = FindObjectOfType<PlayerHealth>();
         audioManager = FindObjectOfType<AudioManager>();
+        gunController = FindObjectOfType<GunController>();
         enemyColor = FindObjectOfType<enemyChangeColor>(); 
     }
 
@@ -51,15 +50,20 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("Taking DAMAGE!");
-        health -= damage;
-        enemyColor.altColor.g += 0.1f;
-
-        if (health <= 0)
+        if (gunController.enemyTakeDamage == true)
         {
-            audioManager.Play("ghostdie");
-            Destroy(gameObject);
-            enemyTakeDamage = false;
+            Debug.Log("Taking DAMAGE!");
+            this.health -= damage;
+            enemyColor.altColor.g += 0.1f;
+
+            if (this.health <= 0)
+            {
+                Debug.Log("HAs DIED!");
+                audioManager.Play("ghostdie");
+                Destroy(this.gameObject);
+                //this.gameObject.SetActive(false);
+                //enemyTakeDamage = false;
+            }
         }
         
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class enemyChangeColor : MonoBehaviour
 {
+    private GunController gunController;
     private EnemyBehaviour enemyScript;
     public UnityEngine.Color altColor = UnityEngine.Color.white;
     public Renderer rend;
@@ -16,6 +17,7 @@ public class enemyChangeColor : MonoBehaviour
 
     private void Awake()
     {
+        gunController = FindObjectOfType<GunController>();
         enemyScript = FindObjectOfType<EnemyBehaviour>();
     }
     void Start()
@@ -27,9 +29,9 @@ public class enemyChangeColor : MonoBehaviour
     }
     void Update()
     {
-        if (enemyScript.enemyTakeDamage == true)
+        if (gunController.enemyTakeDamage == true)
         {
-            Debug.Log("CHANGING COLOR");
+            //Debug.Log("CHANGING COLOR");
             enemyDeadTimer = 20f;
             enemyDeadTimer = Mathf.Clamp(enemyDeadTimer, 0, enemyScript.health);
 

@@ -5,13 +5,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.Shapes;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class GunController : MonoBehaviour
 {
-    Transform enemy;
+    //Transform enemy;
+    public GameObject[] enemies;
     private @InputActionsMap inputActionsMap;
     private AudioManager audioManager;
     private EnemyBehaviour enemyScript;
+    private EnemyInCone enemyInCone;
     public static GunController instance;
     [SerializeField] Transform spawnPoint;
     [SerializeField] float shootSpeed;
@@ -24,12 +28,13 @@ public class GunController : MonoBehaviour
     Color originalSpotlightColor = Color.yellow;
     public float timeToKillEnemy;
     private float enemyDeadTimer;
-
+    public bool enemyTakeDamage = false;
     private void Awake()
     {
         inputActionsMap = new @InputActionsMap();
         audioManager = FindObjectOfType<AudioManager>();
         enemyScript = FindObjectOfType<EnemyBehaviour>();
+        enemyInCone = FindObjectOfType<EnemyInCone>();
 
         if (instance == null)
         {
@@ -52,7 +57,7 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
-        enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
+        //enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
         viewAngle = spotlight.spotAngle;
         spotlight.color = originalSpotlightColor;
     }
@@ -61,21 +66,20 @@ public class GunController : MonoBehaviour
           
         if (inputActionsMap.Player.Shoot.triggered)
         {
-            inputActionsMap.Player.Shoot.started += DrainBattery;
             inputActionsMap.Player.Shoot.started += TurnOn;
             inputActionsMap.Player.Shoot.canceled += TurnOff;
+            inputActionsMap.Player.Shoot.started += DrainBattery;
         }
 
-        if (CanSeeEnemy() && spotlight.enabled == true)
+        if (enemyInCone.enemyInDaCone == true && spotlight.enabled == true)
         {
-            Debug.Log("DIE Ghost!");
-            enemyScript.enemyTakeDamage = true;
+            //Debug.Log("DIE Ghost!");
+            enemyTakeDamage = true;
             //enemyDeadTimer += Time.deltaTime;
-            enemyScript.TakeDamage(damage);
         }
         else
         {
-            enemyScript.enemyTakeDamage = false;
+            enemyTakeDamage = false;
             //Debug.Log("Player: Where r u?");
         }
  
@@ -112,6 +116,7 @@ public class GunController : MonoBehaviour
         }
         //PlayerFire();
     }
+    /*
     bool CanSeeEnemy()
     {
         if (Vector3.Distance(transform.position, enemy.position) < viewDistance)
@@ -130,11 +135,12 @@ public class GunController : MonoBehaviour
         }
         return false;
     }
-
+    */
     private void OnDrawGizmos()
     {
         // Red line that shows flashlight view distance
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
     }
+
 }

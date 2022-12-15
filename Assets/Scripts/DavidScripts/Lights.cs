@@ -21,7 +21,7 @@ public class Lights : MonoBehaviour
     {
         if (PlayerInZone && (LightIsOn == false))          
         {
-            Debug.Log("Playa torn on da lights");
+            //Debug.Log("Playa torn on da lights");
             LightObj.SetActive(true);
 
             LightIsOn = true;
@@ -30,7 +30,7 @@ public class Lights : MonoBehaviour
         }
         if (EnemyInZone && (LightIsOn == true))         
         {
-            Debug.Log("Enemy turn on lights");
+            //Debug.Log("Enemy turn on lights");
             LightObj.SetActive(false);
 
             LightIsOn = false;
@@ -43,12 +43,12 @@ public class Lights : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")     //if player in zone
         {
-            Debug.Log("Player in da zone");
+            //Debug.Log("Player in da zone");
             PlayerInZone = true;
         }
         if (other.gameObject.tag == "Enemy")     //if Enemy in zone
         {
-            Debug.Log("Enemy in da zone");
+            //Debug.Log("Enemy in da zone");
             EnemyInZone = true;
         }
     }
