@@ -9,6 +9,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    [SerializeField] GameObject Test;
     private GunController gunController;
     private AudioManager audioManager;
     private PlayerHealth playerHealth;
@@ -46,12 +47,15 @@ public class EnemyBehaviour : MonoBehaviour
             playerHealth.PlayerTakeDamage(damage);
             StartCoroutine(AttackTimer());
         }
-    }
+        if (gunController.enemyTakeDamage == true)
+        {
+            TakeDamage(10);
+        }
+
+        }
 
     public void TakeDamage(float damage)
     {
-        if (gunController.enemyTakeDamage == true)
-        {
             Debug.Log("Taking DAMAGE!");
             this.health -= damage;
             enemyColor.altColor.g += 0.1f;
@@ -60,11 +64,11 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 Debug.Log("HAs DIED!");
                 audioManager.Play("ghostdie");
-                Destroy(this.gameObject);
+                Destroy(Test);
                 //this.gameObject.SetActive(false);
                 //enemyTakeDamage = false;
             }
-        }
+        
         
     }
 
