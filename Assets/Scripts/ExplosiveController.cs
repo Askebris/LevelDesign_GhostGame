@@ -12,8 +12,8 @@ public class ExplosiveController : MonoBehaviour
     [SerializeField] GameObject explosivePrefab;
     float fireTime;
     float fireRate = 1f;
-    public float currentGrenades;
-    public float maxGrenades = 5f;
+    public float currentGrenades = 0;
+    public float maxGrenades = 999f;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class ExplosiveController : MonoBehaviour
     }
     public void Start()
     {
-        currentGrenades = maxGrenades;
+        currentGrenades = 0;
     }
     
     
@@ -37,7 +37,7 @@ public class ExplosiveController : MonoBehaviour
     {
         if (Time.time - fireRate < fireTime) return;
 
-        if (currentGrenades <= 0) return;
+        if (currentGrenades > 0) return;
 
         currentGrenades--;
         fireTime = Time.time;
