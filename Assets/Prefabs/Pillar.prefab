@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 4605071869704930035}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1138815454286840058
 MeshFilter:
@@ -128,8 +128,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9716981, g: 0.84903324, b: 0.24292453, a: 0.6745098}
-  m_Intensity: 0.12
-  m_Range: 1.09
+  m_Intensity: 0.51
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -173,7 +173,7 @@ Light:
   m_BounceIntensity: 1.63
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 3.4e-44, y: 2.9562e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -3993,7 +3993,7 @@ ParticleSystem:
       emitProbability: 1
   LightsModule:
     enabled: 1
-    ratio: 0
+    ratio: 0.61
     light: {fileID: 4605071869052452031}
     randomDistribution: 1
     color: 1
