@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            StartCoroutine(Died(LoseTheGameCanvasGroup));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -41,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
             audioManager.Play("playerhurt3");
         }
     }
-
+    /*
     private IEnumerator Died(CanvasGroup imageCanvasGroup)
     {
         audioManager.Stop("theme");
@@ -51,4 +51,5 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(displayImageDuration);
         SceneManager.LoadScene("SampleScene");
     }
+    */
 }
