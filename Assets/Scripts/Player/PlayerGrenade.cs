@@ -7,13 +7,13 @@ public class PlayerGrenade : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI Grenade;
     public int grenades;
-    public int maxGrenades = 3;
+    public int maxGrenades = 999;
     public int currentGrenades;
     // Start is called before the first frame update
 
     private void Start()
     {
-        currentGrenades = 1;
+        currentGrenades = 0;
     }
     // Update is called once per frame
     void Update()
