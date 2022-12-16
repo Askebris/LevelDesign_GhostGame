@@ -37,7 +37,7 @@ public class ExplosiveController : MonoBehaviour
     {
         if (Time.time - fireRate < fireTime) return;
 
-        if (currentGrenades > 0) return;
+        if (currentGrenades == 0) return;
 
         currentGrenades--;
         fireTime = Time.time;
@@ -51,7 +51,7 @@ public class ExplosiveController : MonoBehaviour
     
     public void OnGrenade()
     {
-        if (currentGrenades > 0)
+        if (currentGrenades >= 1)
         {
             audioManager.Play("grenadebeep");
         }

@@ -44,7 +44,7 @@ public class GunController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
     private void OnEnable()
     {
         inputActionsMap.Enable();
@@ -53,13 +53,14 @@ public class GunController : MonoBehaviour
     {
         inputActionsMap.Disable();
     }
-
+    /*
     private void Start()
     {
         //enemy = GameObject.FindGameObjectWithTag("Enemy").transform;
         //viewAngle = spotlight.spotAngle;
         //spotlight.color = originalSpotlightColor;
     }
+    */
     void Update()
     {
           
@@ -67,9 +68,9 @@ public class GunController : MonoBehaviour
         {
             inputActionsMap.Player.Shoot.started += TurnOn;
             inputActionsMap.Player.Shoot.canceled += TurnOff;
-            inputActionsMap.Player.Shoot.started += DrainBattery;
+            //inputActionsMap.Player.Shoot.started += DrainBattery;
         }
-
+        /*
         if (enemyInCone.enemyInDaCone == true && spotlight.enabled == true)
         {
             Debug.Log("DIE Ghost!");
@@ -81,40 +82,44 @@ public class GunController : MonoBehaviour
             //enemyTakeDamage = false;
             //Debug.Log("Player: Where r u?");
         }
- 
+ */
     }
 
     private void TurnOff(InputAction.CallbackContext context)
     {
         //Debug.Log("Flashlight off!");
         spotlight.enabled = false;
+        audioManager.Play("flashlightOff");
     }
     private void TurnOn(InputAction.CallbackContext context)
     {
         //Debug.Log("Flashlight On!");
         spotlight.enabled = true;
+        audioManager.Play("flashlightOn");
     }
-
+    /*
     private void DrainBattery(InputAction.CallbackContext context)
     {
         //StartCoroutine(BatteryTimer());
         //Debug.Log("Draining battery");
     }
-
+    */
+    /*
     public void OnShoot()
     {
         if (spotlight.enabled == false) //&& playerAmmo.currentAmmo > 0
         {
             //Debug.Log("Flashlight On!");
-            audioManager.Play("shoot");
+            //audioManager.Play("shoot");
         }
         else
         {
             //Debug.Log("Get Battery!");
-            audioManager.Play("noammo");
+            //audioManager.Play("noammo");
         }
         //PlayerFire();
     }
+    */
     /*
     bool CanSeeEnemy()
     {

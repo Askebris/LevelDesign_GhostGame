@@ -166,6 +166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grenade
       objectReference: {fileID: 0}
+    - target: {fileID: 8287112000894776579, guid: e9a9bfe96f42e564dbe4c61c992a82d7, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8962869001304086431, guid: e9a9bfe96f42e564dbe4c61c992a82d7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -250,7 +254,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7269028777296097399, guid: e9a9bfe96f42e564dbe4c61c992a82d7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e9a9bfe96f42e564dbe4c61c992a82d7, type: 3}
 --- !u!224 &4816201725409142020 stripped
 RectTransform:

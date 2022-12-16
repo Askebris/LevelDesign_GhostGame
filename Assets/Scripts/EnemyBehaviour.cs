@@ -29,7 +29,6 @@ public class EnemyBehaviour : MonoBehaviour
     private bool canAttack = true;
     private void Awake()
     {
-        bool enemyInDaCone = false;
         enemyInCone = FindObjectOfType<EnemyInCone>();
         myTarget = GameObject.FindWithTag("Player");
         playerHealth = FindObjectOfType<PlayerHealth>();
@@ -55,7 +54,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (enemyInDaCone == true && gunController.spotlight.enabled == true)
         {
             Debug.Log("Soon Taking Damage");
-            TakeDamage(10);
+            TakeDamage(1);
         }
 
         }
